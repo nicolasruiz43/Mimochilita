@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Barra from './Barra/Barra';  // Importar desde la carpeta Barra
+import ProductList from './ProductList/ProductList';  // Importar desde la carpeta ProductList
+import Carrito from './Carrito/Carrito';  // Importar desde la carpeta Carrito
+import Minuto from './Minuto/Minuto';  // Importar desde la carpeta Minuto
+import Body from './Body/Body';  // Importar el estilo de Body
 
 function App() {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Barra toggleCart={toggleCart} isLoggedIn={isLoggedIn} />
+      <Body />
+      <main>
+        <h1 className="title">Mi Mochilita</h1>
+        <ProductList />
+        {isCartOpen && <Carrito />}
+        <Minuto />
+      </main>
     </div>
   );
 }
