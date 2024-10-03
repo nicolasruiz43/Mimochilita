@@ -1,31 +1,51 @@
-import React, { useState } from 'react';
-import './App.css';
-import Barra from './Barra/Barra';  // Importar desde la carpeta Barra
-import ProductList from './ProductList/ProductList';  // Importar desde la carpeta ProductList
-import Carrito from './Carrito/Carrito';  // Importar desde la carpeta Carrito
-import Minuto from './Minuto/Minuto';  // Importar desde la carpeta Minuto
-import Body from './Body/Body';  // Importar el estilo de Body
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navigation from './components/Navbar';
+import ItemList from './components/ItemList';
+import ItemDetail from './components/ItemDetail';
+import Cart from './components/Cart';
+import { db } from './firebase/config';
+import { collection, getDocs } from 'firebase/firestore';
+import { CartProvider } from './context/CartContext'; // Asegúrate de que la ruta sea correcta
 
-function App() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const App = () => {
+    const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
-  };
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const productsCollection = collection(db, 'productos');
+                const productSnapshot = await getDocs(productsCollection);
+                const productList = productSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setItems(productList);
+            } catch (error) {
+                console.error("Error al obtener los productos:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-  return (
-    <div className="App">
-      <Barra toggleCart={toggleCart} isLoggedIn={isLoggedIn} />
-      <Body />
-      <main>
-        <h1 className="title">Mi Mochilita</h1>
-        <ProductList />
-        {isCartOpen && <Carrito />}
-        <Minuto />
-      </main>
-    </div>
-  );
-}
+        fetchProducts();
+    }, []);
+
+    return (
+        <CartProvider> {/* Asegúrate de envolver la aplicación con el proveedor */}
+            <Router>
+                <Navigation />
+                <div className="container mt-4">
+                    <Routes>
+                        <Route path="/" element={loading ? <p>Cargando productos...</p> : <ItemList items={items} />} />
+                        <Route path="/item/:id" element={<ItemDetail />} />
+                        <Route path="/cart" element={<Cart />} />
+                    </Routes>
+                </div>
+            </Router>
+        </CartProvider>
+    );
+};
 
 export default App;
