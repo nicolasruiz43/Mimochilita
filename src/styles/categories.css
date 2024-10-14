@@ -1,0 +1,40 @@
+/* src/styles/categories.css */
+
+/* Estilo general para el contenedor de categorías */
+.category-container {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa; /* Fondo claro */
+}
+
+/* Estilo para el título de la sección de categorías */
+.category-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333; /* Color de texto oscuro */
+}
+
+/* Estilo para el selector de categorías */
+.category-container select {
+    width: 100%; /* Hacer que el select ocupe todo el ancho */
+    padding: 10px;
+    border: 1px solid #007bff; /* Borde azul */
+    border-radius: 5px;
+    background-color: #ffffff; /* Fondo blanco */
+    color: #333; /* Color de texto oscuro */
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+/* Cambiar color del borde al enfocarse */
+.category-container select:focus {
+    border-color: #0056b3; /* Azul más oscuro al enfocar */
+    outline: none; /* Quitar el borde predeterminado */
+}
+
+/* Estilo para las opciones del selector */
+.category-container option {
+    color: #333; /* Color de texto para las opciones */
+}

@@ -1,6 +1,7 @@
 // src/components/ItemList.jsx
 import React from 'react';
 import Item from './Item'; // Asegúrate de que la ruta sea correcta
+import '../styles/ItemList.css'; // Importa el archivo CSS
 
 const ItemList = ({ items }) => {
   return (
@@ -10,7 +11,7 @@ const ItemList = ({ items }) => {
           <Item key={item.id} item={item} />
         ))
       ) : (
-        <p>No hay productos disponibles.</p> // Mensaje si no hay productos
+        <p>No hay productos disponibles.</p>
       )}
     </div>
   );

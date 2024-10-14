@@ -1,6 +1,6 @@
 // src/components/Contacto.jsx
-
 import React, { useState } from 'react';
+import '../styles/Contacto.css'; // Importa el archivo CSS
 
 const Contacto = () => {
   const [formData, setFormData] = useState({
@@ -20,9 +20,8 @@ const Contacto = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Formulario enviado:', formData);
-    // Aquí puedes agregar la lógica para enviar el formulario, por ejemplo, a Firestore o a un servidor.
     alert('¡Gracias por tu mensaje!');
-    setFormData({ nombre: '', email: '', mensaje: '' }); // Limpiar formulario
+    setFormData({ nombre: '', email: '', mensaje: '' });
   };
 
   return (

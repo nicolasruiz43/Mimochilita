@@ -1,6 +1,7 @@
 // src/components/Item.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/Item.css'; // Importa el archivo CSS
 
 const Item = ({ item }) => {
   const navigate = useNavigate();

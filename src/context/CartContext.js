@@ -1,4 +1,3 @@
-// src/context/CartContext.js
 import React, { createContext, useState, useContext } from 'react';
 import { db } from '../firebase/config'; 
 import { collection, addDoc } from 'firebase/firestore';
@@ -15,17 +14,26 @@ export const CartProvider = ({ children }) => {
 
     const addToCart = (item, cantidad) => {
         const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
+        
+        let newCartItems;
+        
         if (existingItem) {
-            existingItem.cantidad += cantidad; // Aumentar cantidad si el artículo ya existe en el carrito
+            // Si el artículo ya existe, incrementar su cantidad
+            existingItem.cantidad += cantidad; 
+            newCartItems = [...cartItems]; // Copiar el arreglo existente
         } else {
-            setCartItems([...cartItems, { ...item, cantidad }]); // Agregar nuevo artículo
+            // Si no existe, agregar un nuevo artículo al carrito
+            newCartItems = [...cartItems, { ...item, cantidad }]; 
         }
-        calculateTotal(); // Calcular el total después de agregar al carrito
+        
+        setCartItems(newCartItems); // Actualizar el estado del carrito
+        calculateTotal(newCartItems); // Calcular el total usando el nuevo carrito
     };
 
-    const calculateTotal = () => {
-        const newTotal = cartItems.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
-        setTotal(newTotal);
+    const calculateTotal = (items) => {
+        // Calcular el total basado en los artículos actuales en el carrito
+        const newTotal = items.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+        setTotal(newTotal); // Actualizar el total
     };
 
     const checkout = async (orderData) => {

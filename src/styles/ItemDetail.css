@@ -1,0 +1,90 @@
+/* src/styles/ItemDetail.css */
+
+.container {
+    max-width: 900px; /* Ancho máximo del contenedor */
+    margin: 30px auto; /* Centrado horizontal con un margen superior */
+    padding: 20px;
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+    border-radius: 8px; /* Bordes redondeados */
+    display: flex; /* Flexbox para organizar el contenido */
+    flex-direction: column; /* Dirección de los elementos en columna */
+    align-items: center; /* Alineación central */
+  }
+  
+  .product-details {
+    display: flex; /* Flexbox para detalles del producto */
+    flex-direction: row; /* Dirección en fila */
+    align-items: flex-start; /* Alinear elementos al inicio */
+    width: 100%; /* Ancho completo */
+  }
+  
+  .product-image {
+    flex: 1; /* Ocupa el espacio disponible */
+    max-width: 300px; /* Ancho máximo de la imagen */
+    margin-right: 20px; /* Espacio entre imagen y detalles */
+  }
+  
+  .product-info {
+    flex: 2; /* Ocupa el doble de espacio que la imagen */
+  }
+  
+  h2 {
+    font-size: 24px; /* Tamaño de fuente del título */
+    color: #333; /* Color oscuro */
+    margin-bottom: 10px; /* Margen inferior */
+  }
+  
+  .img-fluid {
+    width: 100%; /* Ancho completo en pantallas más pequeñas */
+    height: auto; /* Mantener proporciones */
+    border-radius: 4px; /* Bordes redondeados para la imagen */
+  }
+  
+  p {
+    font-size: 18px; /* Tamaño de fuente para descripciones */
+    color: #555; /* Color gris */
+    margin-bottom: 10px; /* Margen inferior */
+  }
+  
+  label {
+    font-size: 16px; /* Tamaño de fuente para la etiqueta de cantidad */
+    display: block; /* Asegurarse de que el input esté en una nueva línea */
+    margin-bottom: 5px; /* Margen inferior */
+  }
+  
+  input[type="number"] {
+    width: 60px; /* Ancho fijo para el campo de cantidad */
+    padding: 5px; /* Relleno interno */
+    border: 1px solid #ddd; /* Bordes grises claros */
+    border-radius: 4px; /* Bordes redondeados */
+  }
+  
+  button {
+    background-color: #28a745; /* Color verde */
+    color: #fff; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Relleno interno */
+    font-size: 16px; /* Tamaño de fuente */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar el mouse */
+    margin-top: 15px; /* Margen superior para el botón */
+  }
+  
+  button:hover {
+    background-color: #218838; /* Color más oscuro al pasar el mouse */
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 600px) {
+    .product-details {
+      flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+      align-items: center; /* Centrar elementos */
+    }
+  
+    .product-image {
+      margin-right: 0; /* Eliminar margen derecho en pantallas pequeñas */
+      margin-bottom: 15px; /* Margen inferior para separación */
+    }
+  }
+  
